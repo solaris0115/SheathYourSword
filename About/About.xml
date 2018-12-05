@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ModMetaData>
+	<name>SheathYourSword</name>
+	<author>NukaFrog Gloomylynx</author>
+	<targetVersion>1.0.0</targetVersion>
+    <url></url>
+	<description>
+총을 등에 맬 수 있다
+검집을 그려준다.
+	</description>
+</ModMetaData>
