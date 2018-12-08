@@ -6,7 +6,17 @@
 	<targetVersion>1.0.0</targetVersion>
     <url></url>
 	<description>
-총을 등에 맬 수 있다
-검집을 그려준다.
+Draw Sheath and Sword
+
+Three example swords are added to this mod.
+You can make them by referring to these.
+
+There are two components.
+
+CompProperties_WeaponExtention
+It allows to adjust custom position when holding the weapon.
+
+CompProperties_Sheath
+It draws a Sheath, when pawn drafted or not.
 	</description>
 </ModMetaData>
