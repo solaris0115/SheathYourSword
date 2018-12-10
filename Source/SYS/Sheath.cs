@@ -74,7 +74,11 @@ namespace SYS
                 return sheathOnlyGraphicInt;
             }
         }
-
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            Props = (CompProperties_Sheath)this.props;
+        }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {

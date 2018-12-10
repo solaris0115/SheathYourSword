@@ -46,6 +46,7 @@ namespace SYS
 
             Stance_Busy stance_Busy = pawn.stances.curStance as Stance_Busy;
             CompWeaponExtention compW = pawn.equipment.Primary.GetComp<CompWeaponExtention>();
+            CompSheath compSheath = pawn.equipment.Primary.GetComp<CompSheath>();
             bool busy = stance_Busy != null && !stance_Busy.neverAimWeapon && stance_Busy.focusTarg.IsValid;
             if (busy)
             {
@@ -67,6 +68,11 @@ namespace SYS
                 drawLoc += new Vector3(0f, 0f, 0.4f).RotatedBy(num);
                 drawLoc.y += drawYPosition;
                 __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, num);
+                if (compSheath != null)
+                {
+                    DrawSheath(compSheath, pawn, rootLoc, compSheath.SheathOnlyGraphic);
+                }
+                return false;
             }
             else if ((pawn.carryTracker == null || pawn.carryTracker.CarriedThing == null) && (pawn.Drafted || (pawn.CurJob != null && pawn.CurJob.def.alwaysShowWeapon) || (pawn.mindState.duty != null && pawn.mindState.duty.def.alwaysShowWeapon)))
             {
@@ -123,21 +129,19 @@ namespace SYS
                         __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc5, 217f);
                     }
                 }
+                if (compSheath != null)
+                {
+                    DrawSheath(compSheath, pawn, rootLoc, compSheath.SheathOnlyGraphic);
+                }
+                return false;
             }
-            if(!pawn.InBed())
+            if(!(pawn.InBed()) && pawn.GetPosture()== PawnPosture.Standing)
             {
-                CompSheath compSheath = pawn.equipment.Primary.GetComp<CompSheath>();
                 if (compSheath != null)
                 {
                     Vector3 drawLoc = rootLoc;
-                    if (!pawn.Drafted && !busy)
-                    {
-                        DrawSheath(compSheath, pawn, drawLoc, compSheath.FullGraphic);
-                    }
-                    else
-                    {
-                        DrawSheath(compSheath, pawn, drawLoc, compSheath.SheathOnlyGraphic);
-                    }
+                    DrawSheath(compSheath, pawn, drawLoc, compSheath.FullGraphic);
+
                 }
             }            
             return false;
