@@ -25,6 +25,20 @@ namespace SYS
     //비소집시 드로잉
     public class CompProperties_Sheath : CompProperties
     {
+        static GraphicData nullData;
+        public static Graphic NullData
+        {
+            get
+            {
+                if(nullData==null)
+                {
+                    nullData = new GraphicData();
+                    nullData.graphicClass = typeof(Graphic_Single);
+                    nullData.texPath = "Things/NullDraw";
+                }
+                return nullData.Graphic;
+            }
+        }
         public GraphicData sheathOnlyGraphicData = null;
         public GraphicData fullGraphicData = null;
         public DrawPosition drawPosition=DrawPosition.None;
@@ -51,8 +65,7 @@ namespace SYS
                 {
                     if (Props.fullGraphicData == null)
                     {
-                        Log.ErrorOnce(parent.def + "SheathYourSword - has no graphicData.", 764532, false);
-                        return BaseContent.BadGraphic;
+                        return parent.Graphic;
                     }
                     fullGraphicInt = Props.fullGraphicData.GraphicColoredFor(parent);
                 }
@@ -65,9 +78,10 @@ namespace SYS
             {
                 if (sheathOnlyGraphicInt == null)
                 {
-                    if (Props.fullGraphicData == null)
+                    if (Props.sheathOnlyGraphicData == null)
                     {
-                        return parent.Graphic;
+                        sheathOnlyGraphicInt = CompProperties_Sheath.NullData;
+                        return sheathOnlyGraphicInt;
                     }
                     sheathOnlyGraphicInt = Props.sheathOnlyGraphicData.GraphicColoredFor(parent);
                 }
