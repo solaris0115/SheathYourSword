@@ -35,5 +35,10 @@ namespace SYS
             base.PostExposeData();
             Props = (CompProperties_WeaponExtention)props;
         }
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            Props = (CompProperties_WeaponExtention)props;
+        }
     }
 }

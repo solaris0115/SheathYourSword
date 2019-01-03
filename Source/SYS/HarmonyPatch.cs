@@ -27,27 +27,25 @@ namespace SYS
     {
         public const float drawYPosition = 0.0390625f;
         [HarmonyPrefix]
-        public static bool DrawEquipmentPrefix(ref PawnRenderer __instance, ref Vector3 rootLoc)
+        public static bool DrawEquipmentPrefix(PawnRenderer __instance, Pawn ___pawn, Vector3 rootLoc)
         {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.Dead || !pawn.Spawned)
+            if (___pawn.Dead || !___pawn.Spawned)
             {
                 return false;
             }
-            if (pawn.equipment == null || pawn.equipment.Primary == null)
+            if (___pawn.equipment == null || ___pawn.equipment.Primary == null)
             {
 
                 return false;
             }
-            if (pawn.CurJob != null && pawn.CurJob.def.neverShowWeapon)
+            if (___pawn.CurJob != null && ___pawn.CurJob.def.neverShowWeapon)
             {
                 return false;
             }
-
-            Stance_Busy stance_Busy = pawn.stances.curStance as Stance_Busy;
-            CompWeaponExtention compW = pawn.equipment.Primary.GetComp<CompWeaponExtention>();
-            CompSheath compSheath = pawn.equipment.Primary.GetComp<CompSheath>();
-            bool busy = stance_Busy != null && !stance_Busy.neverAimWeapon && stance_Busy.focusTarg.IsValid;
+            Stance_Busy stance_Busy = ___pawn.stances.curStance as Stance_Busy;
+            CompWeaponExtention compW = ___pawn.equipment.Primary.GetComp<CompWeaponExtention>();
+            CompSheath compSheath = ___pawn.equipment.Primary.GetComp<CompSheath>();
+            bool busy = (stance_Busy != null) && (!stance_Busy.neverAimWeapon) && (stance_Busy.focusTarg.IsValid);
             if (busy)
             {
                 Vector3 drawLoc = rootLoc;
@@ -61,86 +59,86 @@ namespace SYS
                     a = stance_Busy.focusTarg.Cell.ToVector3Shifted();
                 }
                 float num = 0f;
-                if ((a - pawn.DrawPos).MagnitudeHorizontalSquared() > 0.001f)
+                if ((a - ___pawn.DrawPos).MagnitudeHorizontalSquared() > 0.001f)
                 {
-                    num = (a - pawn.DrawPos).AngleFlat();
+                    num = (a - ___pawn.DrawPos).AngleFlat();
                 }
                 drawLoc += new Vector3(0f, 0f, 0.4f).RotatedBy(num);
                 drawLoc.y += drawYPosition;
-                __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, num);
+                __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, num);
                 if (compSheath != null)
                 {
-                    DrawSheath(compSheath, pawn, rootLoc, compSheath.SheathOnlyGraphic);
+                    DrawSheath(compSheath, ___pawn, rootLoc, compSheath.SheathOnlyGraphic);
                 }
                 return false;
             }
-            else if ((pawn.carryTracker == null || pawn.carryTracker.CarriedThing == null) && (pawn.Drafted || (pawn.CurJob != null && pawn.CurJob.def.alwaysShowWeapon) || (pawn.mindState.duty != null && pawn.mindState.duty.def.alwaysShowWeapon)))
+            else if ((___pawn.carryTracker == null || ___pawn.carryTracker.CarriedThing == null) && (___pawn.Drafted || (___pawn.CurJob != null && ___pawn.CurJob.def.alwaysShowWeapon) || (___pawn.mindState.duty != null && ___pawn.mindState.duty.def.alwaysShowWeapon)))
             {
                 Vector3 drawLoc = rootLoc;
                 if (compW!=null)
                 {
-                    if (pawn.Rotation == Rot4.South)
+                    if (___pawn.Rotation == Rot4.South)
                     {
                         drawLoc += compW.Props.southOffset.position;
                         drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, compW.Props.southOffset.angle);
+                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.southOffset.angle);
                     }
-                    else if (pawn.Rotation == Rot4.North)
+                    else if (___pawn.Rotation == Rot4.North)
                     {
                         drawLoc += compW.Props.northOffset.position;
-                        DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, compW.Props.northOffset.angle);
+                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.northOffset.angle);
                     }
-                    else if (pawn.Rotation == Rot4.East)
+                    else if (___pawn.Rotation == Rot4.East)
                     {
                         drawLoc += compW.Props.eastOffset.position;
                         drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, compW.Props.eastOffset.angle);
+                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.eastOffset.angle);
                     }
-                    else if (pawn.Rotation == Rot4.West)
+                    else if (___pawn.Rotation == Rot4.West)
                     {
                         drawLoc += compW.Props.westOffset.position;
                         drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(pawn.equipment.Primary, drawLoc, compW.Props.westOffset.angle);
+                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.westOffset.angle);
                     }
                 }
                 else
                 {
-                    if (pawn.Rotation == Rot4.South)
+                    if (___pawn.Rotation == Rot4.South)
                     {
                         Vector3 drawLoc2 = rootLoc + new Vector3(0f, 0f, -0.22f);
                         drawLoc2.y += drawYPosition;
-                        __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc2, 143f);
+                        __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc2, 143f);
                     }
-                    else if (pawn.Rotation == Rot4.North)
+                    else if (___pawn.Rotation == Rot4.North)
                     {
                         Vector3 drawLoc3 = rootLoc + new Vector3(0f, 0f, -0.11f);
-                        __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc3, 143f);
+                        __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc3, 143f);
                     }
-                    else if (pawn.Rotation == Rot4.East)
+                    else if (___pawn.Rotation == Rot4.East)
                     {
                         Vector3 drawLoc4 = rootLoc + new Vector3(0.2f, 0f, -0.22f);
                         drawLoc4.y += drawYPosition;
-                        __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc4, 143f);
+                        __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc4, 143f);
                     }
-                    else if (pawn.Rotation == Rot4.West)
+                    else if (___pawn.Rotation == Rot4.West)
                     {
                         Vector3 drawLoc5 = rootLoc + new Vector3(-0.2f, 0f, -0.22f);
                         drawLoc5.y += drawYPosition;
-                        __instance.DrawEquipmentAiming(pawn.equipment.Primary, drawLoc5, 217f);
+                        __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc5, 217f);
                     }
                 }
                 if (compSheath != null)
                 {
-                    DrawSheath(compSheath, pawn, rootLoc, compSheath.SheathOnlyGraphic);
+                    DrawSheath(compSheath, ___pawn, rootLoc, compSheath.SheathOnlyGraphic);
                 }
                 return false;
             }
-            if(!(pawn.InBed()) && pawn.GetPosture()== PawnPosture.Standing)
+            if (!(___pawn.InBed()) && ___pawn.GetPosture()== PawnPosture.Standing)
             {
                 if (compSheath != null)
                 {
                     Vector3 drawLoc = rootLoc;
-                    DrawSheath(compSheath, pawn, drawLoc, compSheath.FullGraphic);
+                    DrawSheath(compSheath, ___pawn, drawLoc, compSheath.FullGraphic);
 
                 }
             }            
