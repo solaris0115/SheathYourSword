@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <SYS_Dagger.label>ダガー</SYS_Dagger.label>
+  <SYS_Dagger.description>鋭利な短剣です。シーフがそれをよく使います。</SYS_Dagger.description>
+  <SYS_Dagger.tools.point.label>切っ先</SYS_Dagger.tools.point.label>
+  <SYS_Dagger.tools.edge.label>刃</SYS_Dagger.tools.edge.label>
+
+  <SYS_OneHanded.label>ワンハンドソード</SYS_OneHanded.label>
+  <SYS_OneHanded.description>片手剣です。バランスの良く鋭い一撃を放つにはぴったりです。</SYS_OneHanded.description>
+  <SYS_OneHanded.tools.handle.label>柄</SYS_OneHanded.tools.handle.label>
+  <SYS_OneHanded.tools.point.label>切っ先</SYS_OneHanded.tools.point.label>
+  <SYS_OneHanded.tools.edge.label>刃</SYS_OneHanded.tools.edge.label>
+
+  <SYS_TwoHanded.label>トゥーハンドソード</SYS_TwoHanded.label>
+  <SYS_TwoHanded.description>骨董品の両手剣です。重いですが、確実に敵を切り裂くことができます。</SYS_TwoHanded.description>
+  <SYS_TwoHanded.tools.handle.label>柄</SYS_TwoHanded.tools.handle.label>
+  <SYS_TwoHanded.tools.point.label>切っ先</SYS_TwoHanded.tools.point.label>
+  <SYS_TwoHanded.tools.edge.label>刃</SYS_TwoHanded.tools.edge.label>
+
+
+</LanguageData>
