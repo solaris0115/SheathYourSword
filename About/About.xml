@@ -3,7 +3,9 @@
 <ModMetaData>
 	<name>SheathYourSword</name>
 	<author>NukaFrog Gloomylynx</author>
-	<targetVersion>1.0.0</targetVersion>
+	<supportedVersions>
+		<li>1.0</li>
+	</supportedVersions>
     <url></url>
 	<description>
 Draw Sheath and Sword
