@@ -16,6 +16,7 @@ namespace SYS
         public Offset eastOffset;
         public Offset southOffset;
         public Offset westOffset;
+        public bool littleDown=false;
         public CompProperties_WeaponExtention()
         {
             compClass = typeof(CompWeaponExtention);
@@ -23,12 +24,17 @@ namespace SYS
     }
     public class CompWeaponExtention : ThingComp
     {
+        public bool littleDown = false;
         public CompProperties_WeaponExtention Props;
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
             Props = (CompProperties_WeaponExtention)props;
+            if (Props.littleDown)
+            {
+                littleDown = true;
+            }
         }
         public override void PostExposeData()
         {
@@ -39,6 +45,10 @@ namespace SYS
         {
             base.Initialize(props);
             Props = (CompProperties_WeaponExtention)props;
+            if (Props.littleDown)
+            {
+                littleDown = true;
+            }
         }
     }
 }

@@ -17,7 +17,10 @@ namespace SYS
         static DrawPatch()
         {
             HarmonyInstance harmonyInstance = HarmonyInstance.Create("com.SYS.rimworld.mod");
-            harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+            if (!harmonyInstance.HasAnyPatches("com.SYS.rimworld.mod"))
+            {                
+                harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+            }
         }
     }
 
@@ -26,6 +29,7 @@ namespace SYS
     public static class DrawEquipment_WeaponBackPatch
     {
         public const float drawYPosition = 0.0390625f;
+        public const float littleDown = -0.2f;
         [HarmonyPrefix]
         public static bool DrawEquipmentPrefix(PawnRenderer __instance, Pawn ___pawn, Vector3 rootLoc)
         {
@@ -63,6 +67,10 @@ namespace SYS
                 {
                     num = (a - ___pawn.DrawPos).AngleFlat();
                 }
+                if (compW!=null &&compW.littleDown)
+                {
+                    drawLoc.z += littleDown;
+                }
                 drawLoc += new Vector3(0f, 0f, 0.4f).RotatedBy(num);
                 drawLoc.y += drawYPosition;
                 __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, num);
@@ -77,6 +85,32 @@ namespace SYS
                 Vector3 drawLoc = rootLoc;
                 if (compW!=null)
                 {
+                    switch (___pawn.Rotation.AsInt)
+                    {
+                        case 0:
+                            drawLoc += compW.Props.northOffset.position;
+                            DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.northOffset.angle);
+                            break;
+                        case 1:
+                            drawLoc += compW.Props.eastOffset.position;
+                            drawLoc.y += drawYPosition;
+                            DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.eastOffset.angle);
+                            break;
+                        case 2:
+                            drawLoc += compW.Props.southOffset.position;
+                            drawLoc.y += drawYPosition;
+                            DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.southOffset.angle);
+                            break;
+                        case 3:
+                            drawLoc += compW.Props.westOffset.position;
+                            drawLoc.y += drawYPosition;
+                            DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.westOffset.angle);
+                            break;
+                        default:
+                            break;
+                            
+                    }
+                    /*
                     if (___pawn.Rotation == Rot4.South)
                     {
                         drawLoc += compW.Props.southOffset.position;
@@ -99,7 +133,7 @@ namespace SYS
                         drawLoc += compW.Props.westOffset.position;
                         drawLoc.y += drawYPosition;
                         DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.westOffset.angle);
-                    }
+                    }*/
                 }
                 else
                 {
