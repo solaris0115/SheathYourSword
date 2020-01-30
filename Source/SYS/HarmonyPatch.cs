@@ -29,6 +29,7 @@ namespace SYS
     public static class DrawEquipment_WeaponBackPatch
     {
         public const float drawYPosition = 0.0390625f;
+        public const float drawSYSYPosition = 0.03904f;
         public const float littleDown = -0.2f;
         [HarmonyPrefix]
         public static bool DrawEquipmentPrefix(PawnRenderer __instance, Pawn ___pawn, Vector3 rootLoc)
@@ -73,6 +74,7 @@ namespace SYS
                 }
                 drawLoc += new Vector3(0f, 0f, 0.4f).RotatedBy(num);
                 drawLoc.y += drawYPosition;
+                //DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, num);
                 __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, num);
                 if (compSheath != null)
                 {
@@ -110,30 +112,6 @@ namespace SYS
                             break;
                             
                     }
-                    /*
-                    if (___pawn.Rotation == Rot4.South)
-                    {
-                        drawLoc += compW.Props.southOffset.position;
-                        drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.southOffset.angle);
-                    }
-                    else if (___pawn.Rotation == Rot4.North)
-                    {
-                        drawLoc += compW.Props.northOffset.position;
-                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.northOffset.angle);
-                    }
-                    else if (___pawn.Rotation == Rot4.East)
-                    {
-                        drawLoc += compW.Props.eastOffset.position;
-                        drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.eastOffset.angle);
-                    }
-                    else if (___pawn.Rotation == Rot4.West)
-                    {
-                        drawLoc += compW.Props.westOffset.position;
-                        drawLoc.y += drawYPosition;
-                        DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc, compW.Props.westOffset.angle);
-                    }*/
                 }
                 else
                 {
@@ -180,23 +158,8 @@ namespace SYS
         }
         public static void DrawEquipmentAiming(Thing eq, Vector3 drawLoc, float aimAngle)
         {
-            float num = aimAngle;
-            Mesh mesh;
-            if (aimAngle > 20f && aimAngle < 160f)
-            {
-                mesh = MeshPool.plane10;
-            }
-            else if (aimAngle > 200f && aimAngle < 340f)
-            {
-                mesh = MeshPool.plane10Flip;
-            }
-            else
-            {
-                mesh = MeshPool.plane10;
-            }
-            num %= 360f;
             Material matSingle = eq.Graphic.MatSingle;
-            Graphics.DrawMesh(mesh, drawLoc, Quaternion.AngleAxis(num, Vector3.up), matSingle, 0);
+            Graphics.DrawMesh(MeshPool.plane10, drawLoc, Quaternion.AngleAxis(aimAngle, Vector3.up), matSingle, 0);
         }
         public static void DrawSheath(Pawn pawn, Thing eq, Vector3 drawLoc, float aimAngle,Graphic graphic)
         {
@@ -216,28 +179,28 @@ namespace SYS
                     if (pawn.Rotation == Rot4.South)
                     {
                         drawLoc += compSheath.Props.northOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.northOffset.angle, graphic);
                         return;
                     }
                     if (pawn.Rotation == Rot4.North)
                     {
                         drawLoc += compSheath.Props.southOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.southOffset.angle, graphic);
                         return;
                     }
                     if (pawn.Rotation == Rot4.East)
                     {
                         drawLoc += compSheath.Props.eastOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.eastOffset.angle, graphic);
                         return;
                     }
                     if (pawn.Rotation == Rot4.West)
                     {
                         drawLoc += compSheath.Props.westOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.westOffset.angle, graphic);
                         return;
                     }
@@ -252,21 +215,21 @@ namespace SYS
                     if (pawn.Rotation == Rot4.North)
                     {
                         drawLoc += compSheath.Props.northOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.northOffset.angle, graphic);
                         return;
                     }
                     if (pawn.Rotation == Rot4.East)
                     {
                         drawLoc += compSheath.Props.eastOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.eastOffset.angle, graphic);
                         return;
                     }
                     if (pawn.Rotation == Rot4.West)
                     {
                         drawLoc += compSheath.Props.westOffset.position;
-                        drawLoc.y += drawYPosition;
+                        drawLoc.y += drawSYSYPosition;
                         DrawSheath(pawn, pawn.equipment.Primary, drawLoc, compSheath.Props.westOffset.angle, graphic);
                         return;
                     }
