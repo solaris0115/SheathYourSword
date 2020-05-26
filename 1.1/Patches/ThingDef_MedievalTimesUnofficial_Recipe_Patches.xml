@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Add recipe SheathYourSword for -->
+
+	<!-- SYS_Dagger -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		  <operations>
+			<li Class="PatchOperationTest">
+			  <xpath>*/ThingDef[defName = "SYS_Dagger"]/recipeMaker/recipeUsers</xpath>
+			  <success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			  <xpath>*/ThingDef[defName = "SYS_Dagger"]/recipeMaker</xpath>
+			  <value>
+				<recipeUsers><li>MedTimes_BlacksmithForgeTierTwo</li></recipeUsers>
+			  </value>
+			</li>
+		  </operations>
+	</Operation>
+
+	<!-- SYS_OneHanded -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		  <operations>
+			<li Class="PatchOperationTest">
+			  <xpath>*/ThingDef[defName = "SYS_OneHanded"]/recipeMaker/recipeUsers</xpath>
+			  <success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			  <xpath>*/ThingDef[defName = "SYS_OneHanded"]/recipeMaker</xpath>
+			  <value>
+				<recipeUsers><li>MedTimes_BlacksmithForgeTierTwo</li></recipeUsers>
+			  </value>
+			</li>
+		  </operations>
+	</Operation>
+
+	<!-- SYS_TwoHanded -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		  <operations>
+			<li Class="PatchOperationTest">
+			  <xpath>*/ThingDef[defName = "SYS_TwoHanded"]/recipeMaker/recipeUsers</xpath>
+			  <success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			  <xpath>*/ThingDef[defName = "SYS_TwoHanded"]/recipeMaker</xpath>
+			  <value>
+				<recipeUsers><li>MedTimes_BlacksmithForgeTierTwo</li></recipeUsers>
+			  </value>
+			</li>
+		  </operations>
+	</Operation>
+
+</Patch>
