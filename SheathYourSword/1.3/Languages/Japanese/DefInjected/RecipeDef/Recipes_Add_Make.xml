@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Recipe Users: ElectricSmithy, FueledSmithy -->
+
+  <Make_SYS_Dagger.label>ダガーを作る</Make_SYS_Dagger.label>
+  <Make_SYS_Dagger.description>ダガーを作る。</Make_SYS_Dagger.description>
+  <Make_SYS_Dagger.jobString>ダガーを製作中</Make_SYS_Dagger.jobString>
+
+  <Make_SYS_OneHanded.label>ワンハンドソードを作る</Make_SYS_OneHanded.label>
+  <Make_SYS_OneHanded.description>ワンハンドソードを作る。</Make_SYS_OneHanded.description>
+  <Make_SYS_OneHanded.jobString>ワンハンドソードを製作中</Make_SYS_OneHanded.jobString>
+
+  <Make_SYS_TwoHanded.label>トゥーハンドソードを作る</Make_SYS_TwoHanded.label>
+  <Make_SYS_TwoHanded.description>トゥーハンドソードを作る。</Make_SYS_TwoHanded.description>
+  <Make_SYS_TwoHanded.jobString>トゥーハンドソードを製作中</Make_SYS_TwoHanded.jobString>
+
+</LanguageData>
