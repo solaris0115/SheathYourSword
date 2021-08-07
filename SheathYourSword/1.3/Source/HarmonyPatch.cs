@@ -114,18 +114,18 @@ namespace SYS
                 {
                     if (___pawn.Rotation == Rot4.South)
                     {
-                        Vector3 drawLoc2 = rootLoc + new Vector3(0f, 0f, -0.22f);
+                        Vector3 drawLoc2 = rootLoc + new Vector3(0f, 0.3f, -0.22f);
                         drawLoc2.y += drawYPosition;
                         __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc2, 143f);
                     }
                     else if (___pawn.Rotation == Rot4.North)
                     {
-                        Vector3 drawLoc3 = rootLoc + new Vector3(0f, 0f, -0.11f);
+                        Vector3 drawLoc3 = rootLoc + new Vector3(0f, -0.3f, -0.11f);
                         __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc3, 143f);
                     }
                     else if (___pawn.Rotation == Rot4.East)
                     {
-                        Vector3 drawLoc4 = rootLoc + new Vector3(0.2f, 0f, -0.22f);
+                        Vector3 drawLoc4 = rootLoc + new Vector3(0.2f, 0.3f, -0.22f);
                         drawLoc4.y += drawYPosition;
                         __instance.DrawEquipmentAiming(___pawn.equipment.Primary, drawLoc4, 143f);
                     }

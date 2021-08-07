@@ -254,20 +254,20 @@
 		<comps>
 			<li Class="SYS.CompProperties_WeaponExtention">
 				<northOffset>
-					<position>(-0.25,0,0.35)</position>
+					<position>(0.25,0,0.35)</position>
 					<angle>-135</angle>
 				</northOffset>
 				<southOffset>
-					<position>(0.25,0,0.25)</position>
-					<angle>-135</angle>
+					<position>(-10.25,0,0.25)</position>
+					<angle>135</angle>
 				</southOffset>
 				<eastOffset>
-					<position>(0.15,-0.03,0.25)</position>
+					<position>(0.15,0,0.25)</position>
 					<angle>-135</angle>
 				</eastOffset>
 				<westOffset>
-					<position>(-0.15,0,0.25)</position>
-					<angle>-135</angle>
+					<position>(-0.15,-0.3,0.25)</position>
+					<angle>135</angle>
 				</westOffset>
 			</li>
 			<li Class="SYS.CompProperties_Sheath">		
@@ -289,11 +289,11 @@
 					<angle>20</angle>
 				</southOffset>
 				<eastOffset>
-					<position>(-0.25,0,0.1)</position>
+					<position>(-0.25,-0.3,0.1)</position>
 					<angle>50</angle>
 				</eastOffset>
 				<westOffset>
-					<position>(0.25,-0.03,0.1)</position>
+					<position>(0.25,0,0.1)</position>
 					<angle>-50</angle>
 				</westOffset>
 			</li>
